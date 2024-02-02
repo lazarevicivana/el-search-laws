@@ -1,0 +1,89 @@
+﻿version: '3.8'
+name: el-search-laws
+
+services:
+  elastic-search:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
+    container_name: elastic-search
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks: 
+      - elk-network
+  
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.3
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://elastic-search:9200"]'
+    depends_on: 
+      - elastic-search
+    networks: 
+      - elk-network
+    
+    
+  elk-logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.3
+    container_name: elk-logstash
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    volumes:
+      - ../../configs/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ../../configs/logstash/pipeline:/usr/share/logstash/pipeline:ro
+    networks:
+      - elk-network
+    depends_on:
+      - elastic-search
+        
+  documents-management-db:
+    image: quay.io/minio/minio
+    volumes:
+      - documents_management_data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: 'user'
+      MINIO_ROOT_PASSWORD: 'password123'
+      MINIO_ADDRESS: ':9000'
+      MINIO_CONSOLE_ADDRESS: ':9001'
+    command: server /data
+
+  user-management-db:
+    image: postgres
+    container_name: user-management-db
+    restart: always
+    ports:
+      - "54325:5432"
+    environment:
+      POSTRGRES_USER: user
+      POSTRGRES_DB: user-management-db
+      POSTGRES_PASSWORD: user
+      POSTGRES_HOST: localhost
+    volumes:
+      - user_management_db_pgdata:/var/lib/postgresql/data
+    networks:
+      - elk-network
+        
+        
+networks:
+  elk-network:
+    driver: bridge
+    
+volumes: 
+  user_management_db_pgdata:
+    driver: local
+  documents_management_data:
+    driver: local
+  elasticsearch_data:
+    driver: local
