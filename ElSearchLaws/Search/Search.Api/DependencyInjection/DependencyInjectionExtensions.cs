@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Search.Api.DependencyInjection.Infrastructure;
 using Search.Api.DependencyInjection.Mediator;
 using Search.Api.DependencyInjection.Options;
 using Search.Api.ElasticSearch.Configuration;
@@ -17,7 +18,8 @@ public static class DependencyInjectionExtensions
             .AddCors()
             .AddMediator()
             .AddOptionsServiceCollection(builder.Configuration)
-            .AddElasticSearch();
+            .AddElasticSearch()
+            .AddInfrastructure();
         
         var elkOptions = builder.Configuration.GetSection(ElkOptions.Elk).Get<ElkOptions>();
         builder.Host.ConfigureSerilog(elkOptions!.HttpSinkRequestUri,

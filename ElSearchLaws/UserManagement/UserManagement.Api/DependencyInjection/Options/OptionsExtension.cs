@@ -8,7 +8,8 @@ public static class OptionsExtension
 {
     public static IServiceCollection AddOptionsServiceCollection(this IServiceCollection services,IConfiguration configuration)
     {
-        services.BindElkOptions(configuration);
+        services.BindOptions(configuration);
+        
         return services;
     }
 }

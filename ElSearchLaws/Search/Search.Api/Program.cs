@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Search.Api;
 using Search.Api.DependencyInjection;
+using Shared.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.ConfigureServices();
@@ -20,6 +19,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
+app.UseCors("CorsPolicy");
+app.UseRouting();
+app.ConfigureEndpoints();
 
 app.Run();

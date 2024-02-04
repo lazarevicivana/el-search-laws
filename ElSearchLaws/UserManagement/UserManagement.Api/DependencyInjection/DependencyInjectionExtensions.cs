@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Shared.Dependencies;
+﻿using Shared.Dependencies;
 using Shared.Options;
 using UserManagement.Api.DependencyInjection.Cors;
 using UserManagement.Api.DependencyInjection.Mediator;
@@ -13,7 +11,7 @@ public static class DependencyInjectionExtensions
     public static void ConfigureServices(this WebApplicationBuilder builder)
     {
         builder.Services
-            .AddCors()
+            .ConfigureCors()
             .AddMediator()
             .AddOptionsServiceCollection(builder.Configuration);
         

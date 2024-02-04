@@ -15,7 +15,7 @@ public static class OptionsExtension
             .Bind(configuration.GetSection(ElasticSearchOptions.ElasticSearch))
             .ValidateOnStart();
         
-        services.BindElkOptions(configuration);
+        services.BindOptions(configuration);
         return services;
     }
 }

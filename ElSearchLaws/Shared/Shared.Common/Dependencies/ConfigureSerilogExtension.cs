@@ -17,7 +17,7 @@ public static class ConfigureSerilogExtension
                 .WriteTo.DurableHttpUsingTimeRolledBuffers(
                     httpSinkRequestUri,
                     bufferRollingInterval: BufferRollingInterval.Month,
-                    restrictedToMinimumLevel: LogEventLevel.Verbose,
+                    restrictedToMinimumLevel: LogEventLevel.Warning,
                     logEventsInBatchLimit: 1000)
                 .Enrich.WithProperty("serviceName", serviceName);
             

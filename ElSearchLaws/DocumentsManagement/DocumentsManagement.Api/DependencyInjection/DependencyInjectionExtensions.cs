@@ -1,5 +1,6 @@
-﻿using DocumentsManagement.Api.DependencyInjection.Mediator;
-using DocumentsManagement.Api.DependencyInjection.Options;
+﻿using DocumentsManagement.Api.DependencyInjection.Infrastructure;
+using DocumentsManagement.Api.DependencyInjection.Mediator;
+using DocumentsManagement.Api.DependencyInjection.OptionsExtensions;
 using Shared.Dependencies;
 using Shared.Options;
 
@@ -12,7 +13,8 @@ public static class DependencyInjectionExtensions
         builder.Services
             .AddCors()
             .AddMediator()
-            .AddOptionsServiceCollection(builder.Configuration);
+            .AddOptionsServiceCollection(builder.Configuration)
+            .AddInfrastructure(builder.Configuration);
         
         var elkOptions = builder.Configuration.GetSection(ElkOptions.Elk).Get<ElkOptions>();
         builder.Host.ConfigureSerilog(elkOptions!.HttpSinkRequestUri,

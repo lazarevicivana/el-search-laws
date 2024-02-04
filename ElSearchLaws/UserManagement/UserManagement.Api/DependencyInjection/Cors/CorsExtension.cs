@@ -4,7 +4,7 @@ namespace UserManagement.Api.DependencyInjection.Cors;
 
 public static class CorsExtension
 {
-    public static IServiceCollection AddCors(this IServiceCollection services)
+    public static IServiceCollection ConfigureCors(this IServiceCollection services)
     {
         services.AddCors(options => {
             options.AddPolicy("CorsPolicy",

@@ -3,7 +3,7 @@ name: el-search-laws
 
 services:
   elastic-search:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
     container_name: elastic-search
     environment:
       - "discovery.type=single-node"
@@ -17,7 +17,7 @@ services:
       - elk-network
   
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.11.3
+    image: docker.elastic.co/kibana/kibana:8.12.0
     container_name: kibana
     ports:
       - "5601:5601"
@@ -30,7 +30,7 @@ services:
     
     
   elk-logstash:
-    image: docker.elastic.co/logstash/logstash:8.11.3
+    image: docker.elastic.co/logstash/logstash:8.12.0
     container_name: elk-logstash
     ports:
       - "5044:5044"
@@ -45,6 +45,25 @@ services:
     depends_on:
       - elastic-search
         
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: user
+      RABBITMQ_DEFAULT_VHOST: "/"
+    volumes:
+      - rabbitmq-content-data:/var/lib/rabbitmq
+      - rabbitmq-content-logs:/var/log/rabbitmq
+    restart: unless-stopped
+    networks:
+      - elk-network
+        
+        
   documents-management-db:
     image: quay.io/minio/minio
     volumes:
@@ -58,6 +77,8 @@ services:
       MINIO_ADDRESS: ':9000'
       MINIO_CONSOLE_ADDRESS: ':9001'
     command: server /data
+    networks:
+      - elk-network
 
   user-management-db:
     image: postgres
@@ -86,4 +107,8 @@ volumes:
   documents_management_data:
     driver: local
   elasticsearch_data:
+    driver: local
+  rabbitmq-content-data:
+    driver: local
+  rabbitmq-content-logs:
     driver: local
