@@ -26,7 +26,7 @@ public static class ContractEndpoints
         app.MapPost($"{BaseUrl}/bool",async (SearchContractRequest request, ISender sender) =>
         {
            var result = await sender.Send(new BoolSearch.Query(
-                "content:\"Radio televizija\" AND governmentName:Republika"));
+                "signatoryPersonSurname:Александар"));
            return result.IsSuccess
                ? Results.Ok(result.Value)
                : Results.Conflict(result.Errors);

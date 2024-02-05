@@ -17,7 +17,6 @@ public static class BoolSearch
     {
         public async Task<Result<ContractSearchResponse>> Handle(Query request, CancellationToken cancellationToken)
         {
-            var list = new List<string>();
             var parsedQuery = ParseQuery(request.BoolQuery);
             var condition = parsedQuery.GetCondition();
             var query = BuildQuery(condition);

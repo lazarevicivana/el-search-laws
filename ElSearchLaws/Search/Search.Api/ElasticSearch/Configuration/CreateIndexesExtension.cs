@@ -10,20 +10,29 @@ public static class CreateIndexesExtension
     public static void CreateLawIndex(this ElasticsearchClient client, string indexName)
     {
         client.Indices.Create<Law>(descriptor => descriptor
-                /*.Settings(s => s
-                    .Analysis(a => a
-                        .Analyzers(aa=> aa
-                            .Language("serbian", languageAnalyzer =>
-                            {
-                                languageAnalyzer.Language(Language.Spanish);
-                            }))
+            .Mappings(mm => mm
+                .Properties(pp=>pp
+                    .Keyword(k=> k.Id)
+                    .Text(t=>t.Content,tp=> tp
+                        .Analyzer("serbian")
+                        .Fields(f=>f
+                            .Keyword(k=> k.Content, v=> v
+                                .IgnoreAbove(265)
+                                .Suffix("keyword")
+                            )
                         )
-                    )*/
-                    /*.Mappings(mm=> mm
-                        .AllField(af => af
-                            .Analyzer("serbian")
-                            .SearchAnalyzer("serbian")
-                            .Store(true)))*/
+                    )
+                    .Text(t=>t.Title,tp=> tp
+                        .Analyzer("serbian")
+                        .Fields(f=>f
+                            .Keyword(k=> k.Title, v=> v
+                                .IgnoreAbove(265)
+                                .Suffix("keyword")
+                            )
+                        )
+                    )
+                    .Text(t=> t.FileName)
+                ))
                 .Index(indexName)
         );
     }
@@ -43,9 +52,17 @@ public static class CreateIndexesExtension
                         .SearchAnalyzer("serbian"))
                     .Text(t => t.SignatoryPersonSurname, c => c
                         .Analyzer("serbian")
+                        .Fields(f=>f
+                            .Keyword(k=> k.GovernmentName, v=> v
+                                .IgnoreAbove(265)
+                                .Suffix("keyword")))
                         .SearchAnalyzer("serbian"))
                     .Text(t => t.GovernmentName, c => c
                         .Analyzer("serbian")
+                        .Fields(f=>f
+                            .Keyword(k=> k.GovernmentName, v=> v
+                                .IgnoreAbove(265)
+                                .Suffix("keyword")))
                         .SearchAnalyzer("serbian"))
                     .Text(t => t.GovernmentType, c => c
                         .Analyzer("serbian")
