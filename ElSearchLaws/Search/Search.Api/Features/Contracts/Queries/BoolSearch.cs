@@ -85,7 +85,6 @@ public static class BoolSearch
                         Query = simpleCondition.Value, 
                         Field = simpleCondition.Field,
                         Analyzer = "serbian"
-                        
                     }
                     : new MatchQuery(Field.KeyField)
                     {
@@ -94,7 +93,6 @@ public static class BoolSearch
                         Analyzer = "serbian"
                     };
             }
-            
             if (condition is BoolQueryDto booleanCondition)
             {
                 var innerQueries = new List<Elastic.Clients.Elasticsearch.QueryDsl.Query>();

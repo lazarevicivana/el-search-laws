@@ -3,7 +3,7 @@ using MediatR;
 using Search.Api.Laws;
 using Shared.Events.Laws;
 
-namespace Search.Api.Features.Laws;
+namespace Search.Api.Features.Laws.Commands;
 
 public static class IndexLaw
 {

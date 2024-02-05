@@ -2,5 +2,5 @@
 
 public class SearchLawRequest
 {
-    public string Content { get; set; } = null!;
+    public string Query { get; set; } = null!;
 }

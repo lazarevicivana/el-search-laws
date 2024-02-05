@@ -30,5 +30,6 @@ public static class InfrastructureExtensions
     {
         configurator.AddConsumer(typeof(UploadedDocumentConsumer));
         configurator.AddConsumer(typeof(ExportedLawMetadataConsumer));
+        configurator.AddConsumer(typeof(ExportedContractMetadataConsumer));
     }
 }

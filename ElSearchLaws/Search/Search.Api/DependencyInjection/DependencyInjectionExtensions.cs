@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Search.Api.DependencyInjection.Cors;
 using Search.Api.DependencyInjection.Infrastructure;
 using Search.Api.DependencyInjection.Mediator;
 using Search.Api.DependencyInjection.Options;
@@ -15,7 +16,7 @@ public static class DependencyInjectionExtensions
     public static void ConfigureServices(this WebApplicationBuilder builder)
     {
         builder.Services
-            .AddCors()
+            .ConfigureCors()
             .AddMediator()
             .AddOptionsServiceCollection(builder.Configuration)
             .AddElasticSearch()

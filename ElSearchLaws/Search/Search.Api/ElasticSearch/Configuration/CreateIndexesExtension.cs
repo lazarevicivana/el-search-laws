@@ -1,5 +1,4 @@
 ﻿using Elastic.Clients.Elasticsearch;
-using Elastic.Clients.Elasticsearch.Analysis;
 using Search.Api.Contracts;
 using Search.Api.Laws;
 
@@ -15,12 +14,6 @@ public static class CreateIndexesExtension
                     .Keyword(k=> k.Id)
                     .Text(t=>t.Content,tp=> tp
                         .Analyzer("serbian")
-                        .Fields(f=>f
-                            .Keyword(k=> k.Content, v=> v
-                                .IgnoreAbove(265)
-                                .Suffix("keyword")
-                            )
-                        )
                     )
                     .Text(t=>t.Title,tp=> tp
                         .Analyzer("serbian")
@@ -53,7 +46,7 @@ public static class CreateIndexesExtension
                     .Text(t => t.SignatoryPersonSurname, c => c
                         .Analyzer("serbian")
                         .Fields(f=>f
-                            .Keyword(k=> k.GovernmentName, v=> v
+                            .Keyword(k=> k.SignatoryPersonSurname, v=> v
                                 .IgnoreAbove(265)
                                 .Suffix("keyword")))
                         .SearchAnalyzer("serbian"))
@@ -66,6 +59,10 @@ public static class CreateIndexesExtension
                         .SearchAnalyzer("serbian"))
                     .Text(t => t.GovernmentType, c => c
                         .Analyzer("serbian")
+                        .Fields(f=>f
+                            .Keyword(k=> k.GovernmentType, v=> v
+                                .IgnoreAbove(265)
+                                .Suffix("keyword")))
                         .SearchAnalyzer("serbian"))
                 ))
         );

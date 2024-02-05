@@ -1,4 +1,6 @@
 ﻿using DocumentsManagement.Api.Features.Common;
+using DocumentsManagement.Api.Features.Contracts;
+using DocumentsManagement.Api.Features.Contracts.ExctractContractContent;
 using DocumentsManagement.Api.Features.Laws;
 using DocumentsManagement.Api.Features.Laws.ExtractLawContents;
 using DocumentsManagement.Api.Options;
@@ -12,6 +14,7 @@ public static class InfrastructureExtensions
         AddIronPdfLicence(configuration);
         services.AddMessageBroker();
         services.AddScoped<IContentExtractor<Law>, ExtractorLawContent>();
+        services.AddScoped<IContentExtractor<Contract>, ExtractContractContent>();
         services.ConfigureMinioDb(configuration);
         
         return services;

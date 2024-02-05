@@ -15,7 +15,7 @@ public static class LawsEndpoints
             async (SearchLawRequest request, ISender sender) =>
             {
                 var result = await sender.Send(new BasicSearch.Query(
-                    request.Content
+                    request.Query
                 ));
                 return result.IsSuccess
                     ? Results.Ok(result.Value)

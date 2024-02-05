@@ -1,0 +1,40 @@
+/* navbar.component.scss */
+.navbar {
+  background-color: #283044; /* Dark slate color */
+  padding: 1rem 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.nav-brand {
+  position: absolute;
+  left: 5%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+  color: #EBF5EE;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-links li a {
+  color: #EBF5EE; /* Light steel blue */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-links li a.active-link, .nav-links li a:hover {
+  color: #BFA89E; /* Light cyan for a subtle highlight */
+}

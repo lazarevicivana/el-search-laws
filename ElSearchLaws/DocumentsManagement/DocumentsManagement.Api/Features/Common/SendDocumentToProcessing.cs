@@ -1,6 +1,6 @@
-﻿using DocumentsManagement.Api.Features.Laws.Commands;
+﻿using DocumentsManagement.Api.Features.Contracts.Commands;
+using DocumentsManagement.Api.Features.Laws.Commands;
 using FluentResults;
-using MassTransit;
 using MediatR;
 using Shared.Events.Events.Common;
 
@@ -20,7 +20,7 @@ public static class SendDocumentToProcessing
             switch (request.DocumentType)
             {
                 case DocumentType.Contract:
-                    //TODO ProcessContract
+                    await sender.Send(new ProcessContract.Command(request.File), cancellationToken);
                     break;
                 case DocumentType.Law:
                     await sender.Send(new ProcessLaw.Command(request.File),cancellationToken);

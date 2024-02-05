@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using MediatR;
 using Search.Api.Features.Laws;
+using Search.Api.Features.Laws.Commands;
 using Shared.Events.Common;
 using Shared.Events.Laws;
 
