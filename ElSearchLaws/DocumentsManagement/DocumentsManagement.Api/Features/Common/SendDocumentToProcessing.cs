@@ -2,7 +2,7 @@
 using DocumentsManagement.Api.Features.Laws.Commands;
 using FluentResults;
 using MediatR;
-using Shared.Events.Events.Common;
+using Shared.Events.Common;
 
 namespace DocumentsManagement.Api.Features.Common;
 

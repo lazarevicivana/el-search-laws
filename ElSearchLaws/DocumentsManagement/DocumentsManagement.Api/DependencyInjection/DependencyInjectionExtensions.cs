@@ -1,4 +1,5 @@
-﻿using DocumentsManagement.Api.DependencyInjection.Infrastructure;
+﻿using DocumentsManagement.Api.DependencyInjection.Cors;
+using DocumentsManagement.Api.DependencyInjection.Infrastructure;
 using DocumentsManagement.Api.DependencyInjection.Mediator;
 using DocumentsManagement.Api.DependencyInjection.OptionsExtensions;
 using Shared.Dependencies;
@@ -11,7 +12,7 @@ public static class DependencyInjectionExtensions
     public static void ConfigureServices(this WebApplicationBuilder builder)
     {
         builder.Services
-            .AddCors()
+            .ConfigureCors()
             .AddMediator()
             .AddOptionsServiceCollection(builder.Configuration)
             .AddInfrastructure(builder.Configuration);

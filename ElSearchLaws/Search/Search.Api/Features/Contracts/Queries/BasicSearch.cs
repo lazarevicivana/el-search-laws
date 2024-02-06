@@ -52,6 +52,7 @@ public static class BasicSearch
                         hit.Source.SignatoryPersonSurname,
                         highlight,
                         hit.Source.Content,
+                        hit.Source.FileName,
                         hit.Source.Id
                         );
                     hitResponses.Add(hitResponse);
@@ -68,6 +69,7 @@ public static class BasicSearch
                         hit.Source.SignatoryPersonSurname,
                         highlight,
                         hit.Source.Content,
+                        hit.Source.FileName,
                         hit.Source.Id
                     );
                     hitResponses.Add(hitResponse);

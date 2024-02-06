@@ -52,6 +52,7 @@ public static class BoolSearch
                         hit.Source.SignatoryPersonSurname,
                         highlight,
                         hit.Source.Content,
+                        hit.Source.FileName,
                         hit.Source.Id
                     );
                     hitResponses.Add(hitResponse);
@@ -68,6 +69,7 @@ public static class BoolSearch
                         hit.Source.SignatoryPersonSurname,
                         highlight,
                         hit.Source.Content,
+                        hit.Source.FileName,
                         hit.Source.Id
                     );
                     hitResponses.Add(hitResponse);
@@ -164,7 +166,7 @@ public static class BoolSearch
                 Value = parts[1],
                 IsPhrase = false
             };
-            if (basicSearchDto.Value.StartsWith("\"") && basicSearchDto.Value.StartsWith("\""))
+            if (basicSearchDto.Value.StartsWith("\"") && basicSearchDto.Value.EndsWith("\""))
             {
                 basicSearchDto.IsPhrase = true;
                 basicSearchDto.Value = basicSearchDto.Value.Substring(1, basicSearchDto.Value.Length - 1);

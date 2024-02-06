@@ -1,0 +1,25 @@
+<div class="maps-ctn">
+
+    <google-map
+            width="100%"
+            height="400px"
+            [center]="center"
+            (mapClick)="onMapClick($event)"
+            [zoom]="zoom">
+        <map-circle *ngIf="circle"
+                    [center]="circle?.center!"
+                    [radius]="circle?.radius!"
+                    [options]="options!"
+        >
+        </map-circle>
+        <map-marker
+                *ngFor="let marker of markers"
+                [position]="marker.position!"
+                [options]="marker">
+        </map-marker>
+    </google-map>
+    <div class="search-fields">
+        <input type="number" [(ngModel)]="circle!.radius" (ngModelChange)="updateCircleRadius()">
+        <button>Search</button>
+    </div>
+</div>

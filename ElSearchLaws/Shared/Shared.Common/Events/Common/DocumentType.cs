@@ -1,4 +1,4 @@
-﻿namespace Shared.Events.Events.Common;
+﻿namespace Shared.Events.Common;
 
 public enum DocumentType
 {

@@ -5,7 +5,6 @@ using MediatR;
 using Minio;
 using Minio.DataModel.Args;
 using Shared.Events.Common;
-using Shared.Events.Events.Common;
 
 namespace DocumentsManagement.Api.Features.Contracts.Commands;
 

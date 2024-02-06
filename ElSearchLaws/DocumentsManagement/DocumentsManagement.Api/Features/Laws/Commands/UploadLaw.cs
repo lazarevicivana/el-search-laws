@@ -3,7 +3,7 @@ using FluentResults;
 using MediatR;
 using Minio;
 using Minio.DataModel.Args;
-using Shared.Events.Events.Common;
+using Shared.Events.Common;
 
 namespace DocumentsManagement.Api.Features.Laws.Commands;
 

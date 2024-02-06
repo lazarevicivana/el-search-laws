@@ -1,5 +1,7 @@
 import {Routes} from '@angular/router';
 import {LawsComponent} from "../pages/laws/laws.component";
+import {ContractsComponent} from "../pages/contracts/contracts.component";
+import {GeoSearchComponent} from "../pages/geo-search/geo-search.component";
 
 export const routes: Routes = [
   { path: '',
@@ -12,6 +14,10 @@ export const routes: Routes = [
   },
   {
     path: 'contracts',
-    component: LawsComponent
+    component: ContractsComponent
+  },
+  {
+    path: 'geo-search',
+    component: GeoSearchComponent
   },
 ];

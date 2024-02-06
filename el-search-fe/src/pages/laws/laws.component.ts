@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {Hit} from "../../core/responses/search-law-response";
 import {NgForOf, NgIf} from "@angular/common";
 import {SearchResultComponent} from "../../shared/search-result/search-result.component";
+import {downloadFile} from "../../shared/download-file";
 
 @Component({
     selector: 'app-laws',
@@ -45,4 +46,10 @@ export class LawsComponent implements OnInit {
             })
     }
 
+    onDownload($event: string) {
+        this.service.downloadDocument($event,0)
+            .subscribe(x => {
+                downloadFile("law.pdf",x)
+            })
+    }
 }

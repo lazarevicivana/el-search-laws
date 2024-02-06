@@ -2,6 +2,5 @@
 
 public class SearchContractRequest
 {
-    public string Field { get; set; } = null!;
-    public string Value { get; set; } = null!;
+   public string Query { get; set; }
 }

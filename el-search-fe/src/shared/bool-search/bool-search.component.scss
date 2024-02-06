@@ -1,0 +1,44 @@
+.bool-container{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+input[type="text"] {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.phrase{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Change the appearance of the select element when it is focused */
+select:focus {
+  border-color: #88aaff;
+  box-shadow: 0 0 3px #88aaff;
+}
+
+/* Style options with a custom color */
+option {
+  padding: 0.5em;
+  background: #fff;
+}
+
+/* You can also style the option elements on hover, but note that
+   this may not be consistently applied across all browsers due to default styling limitations */
+option:hover {
+  background-color: #e9e9e9;
+}

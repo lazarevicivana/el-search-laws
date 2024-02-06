@@ -18,5 +18,8 @@ export class LawService {
   search(request: SearchRequest): Observable<SearchLawResponse> {
     return this.http.post<SearchLawResponse>(`${this.baseUrl}`, request, httpOptions)
   }
+  public downloadDocument(fileName: string, type: number):Observable<Blob>{
+    return this.http.get<Blob>(` https://localhost:7048/api/v1/contract/${fileName}/${type}`,{responseType: 'blob' as 'json'})
+  }
 
 }

@@ -1,7 +1,11 @@
 <div class="laws-container">
   <app-full-text-search [searchValue]="searchValue"
                         (performSearch)="onPerformSearch()"/>
-  <ng-container *ngIf="foundResult" class="search-result-container">
-    <app-search-result *ngFor="let hit of hits" [text]="hit.content"/>
-  </ng-container>
+  <div *ngIf="foundResult" class="search-result-container">
+    <app-search-result *ngFor="let hit of hits"
+                       [text]="hit.content"
+                       [fileName]="hit.fileName"
+                        (download)="onDownload($event)"
+    />
+  </div>
 </div>

@@ -1,0 +1,25 @@
+/* your-component.css */
+google-map {
+  display: block; /* Map takes full width of its container */
+  height: 400px; /* Specify a height for the map */
+}
+.maps-ctn{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+}
+.search-fields{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  padding:  0 0 0 50rem;
+}
+input[type="number"] {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

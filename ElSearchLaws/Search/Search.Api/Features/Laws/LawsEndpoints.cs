@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Search.Api.Features.Laws.Queries;
 using Search.Api.Features.Laws.Requests;
-using Shared.Events.Events.Common;
 
 namespace Search.Api.Features.Laws;
 

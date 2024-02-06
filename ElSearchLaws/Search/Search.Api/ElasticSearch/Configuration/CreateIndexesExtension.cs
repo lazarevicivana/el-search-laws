@@ -36,6 +36,9 @@ public static class CreateIndexesExtension
             .Mappings(mm => mm
                 .Properties(pp=> pp
                     .Keyword(t => t.Id )
+                    .Text(t => t.FileName, c => c
+                        .Analyzer("serbian")
+                        .SearchAnalyzer("serbian"))
                     .Text(t => t.Content, c => c
                         .Analyzer("serbian")
                         .SearchAnalyzer("serbian"))

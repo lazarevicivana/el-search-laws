@@ -2,7 +2,7 @@
 using DocumentsManagement.Api.MinioConfig;
 using MediatR;
 using Microsoft.Extensions.Options;
-using Shared.Events.Events.Common;
+using Shared.Events.Common;
 
 namespace DocumentsManagement.Api.Features.Laws;
 

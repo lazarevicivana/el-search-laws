@@ -1,0 +1,21 @@
+<div class="bool-container" [formGroup]="bool">
+    <select *ngIf="bool.get('counter')?.value !== 0" formControlName="operator">
+        <option *ngFor="let option of operators" [value]="option.value">
+            {{ option.label }}
+        </option>
+    </select>
+    <input type="text"
+           name="search"
+           placeholder="Search..." formControlName="value"/>
+    <select formControlName="field">
+        <option *ngFor="let option of options" [value]="option.value" >
+            {{ option.label }}
+        </option>
+    </select>
+    <div class="phrase">
+        <input type="checkbox"
+               name="search"
+               placeholder="Search..." formControlName="isPhrase"/>
+        <label>Is phrase?</label>
+    </div>
+</div>

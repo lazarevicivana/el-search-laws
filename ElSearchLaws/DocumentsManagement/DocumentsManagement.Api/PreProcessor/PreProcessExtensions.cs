@@ -6,12 +6,7 @@ public static partial class PreProcessExtensions
 {
     public static string PreProcessWithoutSpecialChars(this string content)
     {
-        var withoutSpecialChars = SpecialCharactersRegex().Replace(
-            content.Trim(), " ");
-        var normalizedSpaces = SingleSpace()
-            .Replace(withoutSpecialChars.Trim(), " ");
-
-        return normalizedSpaces;
+        return content;
     }
     public static string PreProcessText(this string content)
     {

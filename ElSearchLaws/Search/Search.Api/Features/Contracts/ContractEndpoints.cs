@@ -10,7 +10,7 @@ public static class ContractEndpoints
     
     public static void MapContractEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapPost($"{BaseUrl}",
+        /*app.MapPost($"{BaseUrl}",
             async (SearchContractRequest request, ISender sender) =>
             {
                 var result = await sender.Send(new BasicSearch.Query(
@@ -22,11 +22,11 @@ public static class ContractEndpoints
                     : Results.Conflict(result.Errors);
 
             }
-        );
+        );*/
         app.MapPost($"{BaseUrl}/bool",async (SearchContractRequest request, ISender sender) =>
         {
            var result = await sender.Send(new BoolSearch.Query(
-                "content:\"Prava, obaveze i odgovornosti\" AND NOT governmentName:rad"));
+               request.Query));
            return result.IsSuccess
                ? Results.Ok(result.Value)
                : Results.Conflict(result.Errors);

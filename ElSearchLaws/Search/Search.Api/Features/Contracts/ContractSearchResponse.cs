@@ -9,4 +9,5 @@ public record ContractHitResponse(string GovernmentName,
     string SignatoryPersonSurname,
     string Highlight,
     string Content,
+    string FileName,
     Guid ContractId);
