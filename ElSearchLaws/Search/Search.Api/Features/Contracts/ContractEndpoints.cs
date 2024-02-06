@@ -31,5 +31,13 @@ public static class ContractEndpoints
                ? Results.Ok(result.Value)
                : Results.Conflict(result.Errors);
         });
+        app.MapPost($"{BaseUrl}/geo",async (GeoSearchRequest request, ISender sender) =>
+        {
+            var result = await sender.Send(new GeoSearch.Query(
+                request.Lat,request.Long,request.Distance));
+            return result.IsSuccess
+                ? Results.Ok(result.Value)
+                : Results.Conflict(result.Errors);
+        });
     }
 }

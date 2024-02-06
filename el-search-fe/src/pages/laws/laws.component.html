@@ -1,6 +1,13 @@
 <div class="laws-container">
-  <app-full-text-search [searchValue]="searchValue"
-                        (performSearch)="onPerformSearch()"/>
+  <div class="inputs">
+    <app-full-text-search [searchValue]="searchValue"
+                          (performSearch)="onPerformSearch()"/>
+    <div class="upload">
+      <input type="file" (change)="onFileChanged($event)">
+      <button (click)="uploadLaw()">Upload law</button>
+    </div>
+  </div>
+
   <div *ngIf="foundResult" class="search-result-container">
     <app-search-result *ngFor="let hit of hits"
                        [text]="hit.content"

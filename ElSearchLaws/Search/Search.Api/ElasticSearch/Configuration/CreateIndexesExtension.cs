@@ -35,6 +35,7 @@ public static class CreateIndexesExtension
             .Index(indexName)
             .Mappings(mm => mm
                 .Properties(pp=> pp
+                    .GeoPoint(g => g.Location)
                     .Keyword(t => t.Id )
                     .Text(t => t.FileName, c => c
                         .Analyzer("serbian")

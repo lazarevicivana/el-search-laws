@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {SearchLawResponse} from "../responses/search-law-response";
 import {httpOptions} from "./http.options";
 import {SearchContractResponse} from "../responses/search-contract-response";
+import {GeoSearch} from "../request/geo-search";
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,8 @@ export class ContractService {
 
   search(request: SearchRequest): Observable<SearchContractResponse> {
     return this.http.post<SearchContractResponse>(`${this.baseUrl}/bool`, request, httpOptions)
+  }
+  searchGeo(request: GeoSearch): Observable<SearchContractResponse> {
+    return this.http.post<SearchContractResponse>(`${this.baseUrl}/geo`, request, httpOptions)
   }
 }

@@ -1,5 +1,4 @@
 <div class="maps-ctn">
-
     <google-map
             width="100%"
             height="400px"
@@ -19,7 +18,16 @@
         </map-marker>
     </google-map>
     <div class="search-fields">
-        <input type="number" [(ngModel)]="circle!.radius" (ngModelChange)="updateCircleRadius()">
-        <button>Search</button>
+        <input type="number"
+               [(ngModel)]="circle!.radius"
+               (ngModelChange)="updateCircleRadius()">
+        <button (click)="onSearch()">Search</button>
+    </div>
+    <div  class="search-result-container-geo">
+        <app-search-result *ngFor="let hit of hits"
+                           [text]="hit.content"
+                           [fileName]="hit.fileName"
+                           (download)="onDownload($event)"
+        />
     </div>
 </div>

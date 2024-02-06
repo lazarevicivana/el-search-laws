@@ -7,3 +7,9 @@ export const httpOptions = {
   })
 }
 export const headers = new HttpHeaders().set('Accept', '*/*').set('Content-Type', 'application/json')
+export const httpOptionsFile = {
+  headers: new HttpHeaders({
+    'Content-Type': 'multipart/form-data',
+    'Accept': '*/*'
+  })
+}
